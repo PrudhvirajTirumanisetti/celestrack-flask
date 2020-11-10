@@ -1,0 +1,4 @@
+docker build -t prudhvirajt/flaskapp:swarm .
+docker run -d -p 8900:8900 prudhvirajt/flaskapp:swarm
+sleep 15
+curl -d 'City=Sanjose&Country=usa&UserDate=2020/13/10' http://localhost:8900/overhead
