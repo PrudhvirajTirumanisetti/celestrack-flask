@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "[CODEBUILD] pre_build started at $(date)"
+      - echo Logging in to docker hub...
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
+  build:
+    commands:
+      - echo "[CODEBUILD] build started at $(date)"
+      - echo Building the Docker image...
+      - docker build -t $IMG_REPOSITORY:$IMG_TAG .
+      - echo "[CODEBUILD] build finished at $(date)"
+  post_build:
+    commands:
+      - echo "[CODEBUILD] post_build started at $(date)"
+      - echo Pushing the Docker images...
+      - docker push $IMG_REPOSITORY:$IMG_TAG
+      - echo "[CODEBUILD] post_build completed at $(date)"
