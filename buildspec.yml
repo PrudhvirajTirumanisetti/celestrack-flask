@@ -6,6 +6,7 @@ phases:
       - echo "[CODEBUILD] pre_build started at $(date)"
       - echo Logging in to docker hub...
       - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
+      - docker --version
       - docker pull alpine
   build:
     commands:
